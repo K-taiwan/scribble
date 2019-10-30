@@ -11,13 +11,12 @@ with the best content all around the world. It is designed to be built, refined 
 Fork this repo, and submit homework as a pull request on this repo...
 
 ```
-$ git clone https://git.generalassemb.ly/sf-wdi-48/scribble
 $ cd scribble
 $ virtualenv .env -p python3
 $ source .env/bin/activate
-$ pip install Django==2.0.5
-$ pip install psycopg2
-$ pip freeze > requirements.txt
+$ pip3 install Django
+$ pip3 install psycopg2
+$ pip3 freeze > requirements.txt
 $ django-admin startproject scribble_project .
 $ django-admin startapp scribble
 ```
