@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="post-header" style="background-image:url({{post.photo_url}})">
+    <section class="post-info">
+        <h2>
+            {{post.author}}
+            <a href="#">edit</a>
+        </h2>
+        <h4>
+            <a href="#" class="delete">delete</a>
+            {{post.title}}
+        </h4>
+    </section>
+</section>
+
+    <ul class="tracks">
+        <h2>
+            Post
+        </h2>
+        {% if post.body.all %}
+            {% for song in post.bodys.all %}
+            <a href="">
+                <li class="track">
+                    <!-- <img src="{{song.photo_url}}" alt="{{song.title}}"> -->
+                    {{ post.title }}
+                </li>
+            </a>
+            {% endfor %}
+            {% else %}
+                <li class="track">
+                    NO Posts Found
+                </li>
+            {% endif %}
+    </ul>
+
+
+{% endblock %}

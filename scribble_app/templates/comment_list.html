@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="tracks">
+    <h2>
+        Comments
+    </h2>
+    {% for comment in comments %}
+    <a href="">
+        <li class="track">
+            <!-- <img src="{{comment.photo_url}}" alt="{{comment.body}}"> -->
+            {{ comment.author }}
+        </li>
+    </a>
+    {% endfor %}
+</ul>
+
+{% endblock %}
