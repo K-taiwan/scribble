@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <ul class="tracks">
-    <h2>
-        Comments
-    </h2>
-    {% for comment in comments %}
-    <a href="">
-        <li class="track">
-            <!-- <img src="{{comment.photo_url}}" alt="{{comment.body}}"> -->
-            {{ comment.author }}
-        </li>
-    </a>
-    {% endfor %}
+  <h2>Comments </h2>
+{% for comment in comments %}
+<a href="{{comment.link_url}}">
+  <li class="track">
+    {{ comment.body }} By: {{comment.post.author}}
+    <a href="{% url 'comment_edit' pk=comment.post.pk comment_pk=comment.pk %}" class="comment-edit">Edit</a>
+  </li>
+</a>
+{% endfor %}
 </ul>
 
 {% endblock %}

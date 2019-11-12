@@ -1,38 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section class="post-header" style="background-image:url({{post.photo_url}})">
+<section class="post-header" style="background-image:url({{post.link_url}})">
     <section class="post-info">
         <h2>
             {{post.author}}
-            <a href="#">edit</a>
+            {% if post.user == user %}
+            <a href="{% url 'post_edit' pk=post.pk %}">edit</a>
+            {% endif %}
         </h2>
         <h4>
-            <a href="#" class="delete">delete</a>
+                {% if post.user == user %}
+            <a href="{% url 'post_delete' pk=post.pk %}" class="delete">delete</a>
+                {% endif %}
             {{post.title}}
         </h4>
     </section>
 </section>
 
-    <ul class="tracks">
-        <h2>
-            Post
-        </h2>
-        {% if post.body.all %}
-            {% for song in post.bodys.all %}
-            <a href="">
-                <li class="track">
-                    <!-- <img src="{{song.photo_url}}" alt="{{song.title}}"> -->
-                    {{ post.title }}
-                </li>
-            </a>
-            {% endfor %}
-            {% else %}
-                <li class="track">
-                    NO Posts Found
-                </li>
-            {% endif %}
-    </ul>
+<ul class="tracks">
+        <h2>Comments <a href="{% url 'comment_create' pk=post.pk %}">+</a></h2>
+    {% if post.comments.all %}
+        {% for comment in post.comments.all %}
+        <a href="{{comment.link_url}}">
+            <li class="track">
+                    {% if post.user == user %}
+                <a class="delete" href="{% url 'comment_delete' pk=post.pk comment_pk=comment.pk %}">X</a>
+                    {% endif %}
+                {{ comment.author }}
+                {{ comment.body }}
+                {{ comment.link_url }}
+                <a class="comment-edit" href="{% url 'comment_edit' pk=post.pk comment_pk=comment.pk %}">Edit</a>
+            </li>
+        </a>
+        {% endfor %}
+    {% else %}
+        <li class="track">
+            NO Comments Found
+        </li>
+    {% endif %}
+</ul>
 
 
 {% endblock %}

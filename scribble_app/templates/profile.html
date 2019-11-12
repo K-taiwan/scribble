@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="profile-name">{{user.username}}</h1>
+  <section>
+    <ul class="tracks">
+      <h2>Submitted Posts</h2>
+      {% if posts %}
+      {% for post in posts %}
+        <a href="{% url 'post_detail' pk=post.pk %}">
+          <li class="track">
+            <img src="{{post.photo_url}}" alt="{{post.author}}">
+            {{post.author}}
+          </li>
+        </a>
+        <ul class="tracks">
+            <h2>Comments</h2>
+            {% for comment in post.comments.all %}
+            <li class="track">
+              {{comment.title}}
+            </li>
+            {% endfor %}
+          </ul>
+      {% endfor %}
+      {% else %}
+      <p>You have not submitted any Posts.</p>
+      {% endif %}
+    </ul>
+  </section>
+{% endblock %}

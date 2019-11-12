@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="form-section">
+  <h1>{{header}}</h1>
+  {% if post.user == user %}
+  <form  method="POST" class="post-form">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Save</button>
+  </form>
+  {% else %}
+  <p>YOU SHALL NOT PASS</p>
+  {% endif %}
+</section>
+
+{% endblock %}
